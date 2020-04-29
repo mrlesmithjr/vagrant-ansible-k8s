@@ -1,3 +1,11 @@
+commit e7440abd5d2d70f8abca681a61a24f9b64cfad68
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Wed Apr 29 00:51:41 2020 -0400
+
+    Fixed issue with reset playbook
+    
+    Needed to add -f to reset to force the reset
+
 commit 9125fad9d238e0b2680fbbe600318f2bffc666c0
 Author: Larry Smith Jr <mrlesmithjr@gmail.com>
 Date:   Wed Apr 29 00:24:48 2020 -0400

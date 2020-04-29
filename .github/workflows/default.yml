@@ -1,0 +1,30 @@
+---
+name: Spin Up Lab Testing
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.6, 3.7]
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          path: vagrant-ansible-k8s
+      - name: Install Packer
+        env:
+          VAGRANT_VERSION: 2.2.7
+          VIRTUALBOX_VERSION: 6.1
+        run: |
+          source /etc/os-release
+          apt-get update
+          apt-get install -y gnupg wget
+          echo -e "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $VERSION_CODENAME contrib" > /etc/apt/sources.list.d/virtualbox.list
+          wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add -
+          wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | apt-key add -
+          apt-get update
+          apt-get install -y virtualbox-$VIRTUALBOX_VERSION
+          wget https://releases.hashicorp.com/vagrant/$VAGRANT_VERSION/vagrant_$VAGRANT_VERSION_x86_64.deb
+          apt-get install -y ./vagrant_$VAGRANT_VERSION_x86_64.deb
