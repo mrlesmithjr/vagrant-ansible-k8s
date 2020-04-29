@@ -1,3 +1,9 @@
+commit c9aa99e1ec398bbaa3cdae713520305c187cfe6c
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Wed Apr 29 01:21:36 2020 -0400
+
+    Fixing permissions as sudo is required
+
 commit 35c77b4640cf66145e9c2e5a47f98875264cae40
 Author: Larry Smith Jr <mrlesmithjr@gmail.com>
 Date:   Wed Apr 29 01:19:03 2020 -0400
