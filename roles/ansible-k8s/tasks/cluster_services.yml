@@ -1,0 +1,16 @@
+---
+- name: cluster_services | Capturing K8s Services
+  command: >
+    kubectl --kubeconfig {{ k8s_admin_config }} \
+    get services --all-namespaces -o json
+  changed_when: false
+  become: true
+  tags:
+    - k8s_get_dashboard
+  register: _k8s_get_services_all
+  when: k8s_reports['all_service_namespaces']|bool
+
+- name: cluster_services | Displaying K8s Services
+  debug:
+    var: (_k8s_get_services_all['stdout']|from_json)['items']
+  when: k8s_reports['all_service_namespaces']|bool
