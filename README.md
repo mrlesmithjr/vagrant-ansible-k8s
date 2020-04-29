@@ -1,11 +1,12 @@
-# Vagrant
+# Vagrant Ansible K8s
 
-- Requirements
-  - [Ansible](https://www.ansible.com)
-  - [Vagrant](https://www.vagrantup.com/)
-  - [Virtualbox](https://www.virtualbox.org/)
+## Requirements
 
-Included in the `Vagrant` folder is a testing environment with `4` nodes.
+- [Ansible](https://www.ansible.com)
+- [Vagrant](https://www.vagrantup.com/)
+- [Virtualbox](https://www.virtualbox.org/)
+
+Included is a testing environment with `4` nodes.
 
 - `k8s-master` - K8s Cluster Master (`192.168.250.10`)
 - `k8s-worker-01` - K8s Cluster Member (`192.168.250.11`)
@@ -15,7 +16,6 @@ Included in the `Vagrant` folder is a testing environment with `4` nodes.
 You can easily spin this up for learning purposes:
 
 ```bash
-cd Vagrant/
 vagrant up
 ```
 
