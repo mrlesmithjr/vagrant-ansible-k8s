@@ -1,3 +1,9 @@
+commit 35c77b4640cf66145e9c2e5a47f98875264cae40
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Wed Apr 29 01:19:03 2020 -0400
+
+    Added initial GitHub actions pipeline testing
+
 commit e7440abd5d2d70f8abca681a61a24f9b64cfad68
 Author: Larry Smith Jr <mrlesmithjr@gmail.com>
 Date:   Wed Apr 29 00:51:41 2020 -0400
