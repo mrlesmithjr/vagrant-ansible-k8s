@@ -1,32 +1,32 @@
----
-name: Spin Up Lab Testing
-on: push
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# ---
+# name: Spin Up Lab Testing
+# on: push
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v1
-        with:
-          path: vagrant-ansible-k8s
-      - name: Installing Pre-Reqs
-        env:
-          VAGRANT_VERSION: 2.2.7
-          VIRTUALBOX_VERSION: 6.1
-        run: |
-          source /etc/os-release
-          sudo apt-get update
-          sudo apt-get install -y gnupg software-properties-common wget
-          wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
-          wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-          sudo add-apt-repository "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $VERSION_CODENAME contrib"
-          sudo apt-get update
-          sudo apt-get install -y virtualbox-${VIRTUALBOX_VERSION}
-          wget https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.deb
-          sudo apt-get install -y ./vagrant_${VAGRANT_VERSION}_x86_64.deb
-      - name: Spinning Up
-        run: |
-          vagrant up
-      - name: Tearing Down
-        run: |
-          ./scripts/cleanup.sh
+#     steps:
+#       - uses: actions/checkout@v1
+#         with:
+#           path: vagrant-ansible-k8s
+#       - name: Installing Pre-Reqs
+#         env:
+#           VAGRANT_VERSION: 2.2.7
+#           VIRTUALBOX_VERSION: 6.1
+#         run: |
+#           source /etc/os-release
+#           sudo apt-get update
+#           sudo apt-get install -y gnupg software-properties-common wget
+#           wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+#           wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+#           sudo add-apt-repository "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $VERSION_CODENAME contrib"
+#           sudo apt-get update
+#           sudo apt-get install -y virtualbox-${VIRTUALBOX_VERSION}
+#           wget https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.deb
+#           sudo apt-get install -y ./vagrant_${VAGRANT_VERSION}_x86_64.deb
+#       - name: Spinning Up
+#         run: |
+#           vagrant up
+#       - name: Tearing Down
+#         run: |
+#           ./scripts/cleanup.sh
