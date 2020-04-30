@@ -3,11 +3,14 @@ dist: bionic
 
 language: python
 
+env:
+  - VAGRANT_VERSION="2.2.7" VIRTUALBOX_VERSION="6.1"
+
 before_install:
   - |
     source /etc/os-release
     sudo apt-get update
-    sudo apt-get install -y gnupg software-properties-common wget
+    sudo apt-get install -y apt-transport-https gnupg2 software-properties-common wget
     wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
     wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
     sudo add-apt-repository "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $VERSION_CODENAME contrib"
@@ -15,8 +18,14 @@ before_install:
     sudo apt-get install -y virtualbox-${VIRTUALBOX_VERSION}
     wget https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.deb
     sudo apt-get install -y ./vagrant_${VAGRANT_VERSION}_x86_64.deb
+    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+    echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+    sudo apt-get update
+    sudo apt-get install -y kubectl
 
 script:
   - |
     vagrant up
+    export KUBECONFIG=$KUBECONFIG:~/.kube/vagrant-k8s.yml
+    kubectl get all --all-namespaces
     ./scripts/cleanup.sh
